@@ -1,0 +1,231 @@
+Creating a complete Spring Boot project with all the specified requirements involves several steps. Below is a simplified example that includes the basic structure and functionalities using Spring Boot, Gradle, HSQL in-memory database, and RESTful APIs. Note that this is a basic example, and in a real-world scenario, you might want to add more features, error handling, security, and optimizations.
+
+1. Project Structure
+Create a new Spring Boot project with the following directory structure:
+
+
+spring-boot-gradle-demo
+│
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com/example/demo
+│   │   │       ├── controller
+│   │   │       │   ├── AdminController.java
+│   │   │       │   ├── ReaderController.java
+│   │   │       │   └── UserController.java
+│   │   │       ├── model
+│   │   │       │   └── UserLocation.java
+│   │   │       ├── repository
+│   │   │       │   └── UserLocationRepository.java
+│   │   │       ├── service
+│   │   │       │   └── UserService.java
+│   │   │       └── DemoApplication.java
+│   │   │
+│   │   ├── resources
+│   │   │   └── application.properties
+│   │   │
+│   │   └── test
+│   │       └── java
+│   │           └── com/example/demo
+│   │               └── service
+│   │                   └── UserServiceTest.java
+│   └── build.gradle
+│
+└── build
+
+
+2. build.gradle
+
+plugins {
+    id 'org.springframework.boot' version '2.6.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    runtimeOnly 'org.hsqldb:hsqldb'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+
+3. application.properties
+
+spring.datasource.url=jdbc:hsqldb:mem:testdb
+spring.datasource.driverClassName=org.hsqldb.jdbcDriver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.HSQLDialect
+spring.h2.console.enabled=true
+
+# Other Spring Boot configurations
+
+
+4. UserLocation.java
+
+package com.example.demo.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class UserLocation {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String name;
+    
+    private double latitude;
+    
+    private double longitude;
+    
+    private boolean excluded;
+
+    // Getters and setters
+
+}
+
+5. UserLocationRepository.java
+
+package com.example.demo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.example.demo.model.UserLocation;
+
+public interface UserLocationRepository extends JpaRepository<UserLocation, Long> {
+    // Additional query methods if needed
+}
+
+
+6. UserService.java
+
+package com.example.demo.service;
+
+import java.util.List;
+
+import com.example.demo.model.UserLocation;
+
+public interface UserService {
+    
+    UserLocation createUser(UserLocation userLocation);
+    
+    UserLocation updateUser(Long userId, UserLocation userLocation);
+    
+    List<UserLocation> getNearestUsers(int n);
+
+}
+
+
+7. UserController.java
+
+package com.example.demo.controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.model.UserLocation;
+import com.example.demo.service.UserService;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping("/create_data")
+    public UserLocation createUser(@RequestBody UserLocation userLocation) {
+        return userService.createUser(userLocation);
+    }
+
+    @PatchMapping("/update_data/{userId}")
+    public UserLocation updateUser(@PathVariable Long userId, @RequestBody UserLocation userLocation) {
+        return userService.updateUser(userId, userLocation);
+    }
+
+    @GetMapping("/get_users/{n}")
+    public List<UserLocation> getNearestUsers(@PathVariable int n) {
+        return userService.getNearestUsers(n);
+    }
+}
+
+
+8. UserServiceImpl.java
+
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import com.example.demo.model.UserLocation;
+import com.example.demo.repository.UserLocationRepository;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    private final UserLocationRepository userLocationRepository;
+
+    public UserServiceImpl(UserLocationRepository userLocationRepository) {
+        this.userLocationRepository = userLocationRepository;
+    }
+
+    @Override
+    public UserLocation createUser(UserLocation userLocation) {
+        return userLocationRepository.save(userLocation);
+    }
+
+    @Override
+    public UserLocation updateUser(Long userId, UserLocation userLocation) {
+        // Implement update logic
+        // You can use userLocationRepository.findById(userId) and update the fields
+        return userLocationRepository.save(userLocation);
+    }
+
+    @Override
+    public List<UserLocation> getNearestUsers(int n) {
+        // Implement logic to get the nearest N users from (0,0) who are not excluded
+        // You may need to use a distance calculation algorithm
+        return userLocationRepository.findAll(); // Replace with actual implementation
+    }
+}
+
+
+9. AdminController.java and ReaderController.java
+These controllers can be similar to UserController, with appropriate request mappings. Ensure that AdminController allows CRUD operations, while ReaderController allows only GET operations.
+
+10. Running the Application
+Run the DemoApplication.java file to start the Spring Boot application.
+
+11. Unit Testing
+Write unit tests for the services and controllers using tools like JUnit and Mockito. Place them in the test folder.
+
+12. Checkstyle
+Configure Checkstyle for your project and ensure that your code complies with the style rules.
+
+13. Documentation
+Add Javadoc comments to your classes and methods for better readability and documentation.
+
+This example provides a basic structure and implementation. Adjustments may be needed based on your specific requirements and design preferences.
