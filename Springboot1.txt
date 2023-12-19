@@ -1,0 +1,108 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.example.demo.model.UserLocation;
+import com.example.demo.service.UserLocationService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api") 
+public class UserLocationController {
+
+  @Autowired
+  private UserLocationService userLocationService;
+
+  @PostMapping("/admin/create_data")
+  public ResponseEntity<String> createTable() {
+    userLocationService.createTable();
+    return new ResponseEntity<>("Table created successfully!", HttpStatus.CREATED);
+  }
+
+  @PutMapping("/admin/update_data")
+  public ResponseEntity<String> updateUserLocation(@RequestBody UserLocation userLocation) {
+    userLocationService.updateUserLocation(userLocation);
+    return new ResponseEntity<>("User location updated successfully!", HttpStatus.OK); 
+  }
+
+  @GetMapping("/reader/get_users/{count}")
+  public ResponseEntity<List<UserLocation>> getNearestUsers(@PathVariable int count) {
+    List<UserLocation> nearestUsers = userLocationService.getNearestUsers(count);
+    return new ResponseEntity<>(nearestUsers, HttpStatus.OK);
+  }
+
+}
+
+
+
+
+package com.example.demo.model;
+
+public class UserLocation {
+
+  private String name;
+  private Double latitude; 
+  private Double longitude;
+  private Boolean excluded;
+
+  // Getters and setters
+
+}
+
+
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.UserLocation;
+import com.example.demo.repository.UserLocationRepository;
+
+@Service
+public class UserLocationService {
+
+  @Autowired 
+  private UserLocationRepository userLocationRepository;
+
+  public void createTable() {
+    userLocationRepository.createTableIfNotExists(); 
+  }
+
+  public void updateUserLocation(UserLocation userLocation) {
+    userLocationRepository.save(userLocation);
+  }
+
+  public List<UserLocation> getNearestUsers(int count) {
+    return userLocationRepository.findNearest(count);
+  }
+
+}
+
+
+
+package com.example.demo.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.example.demo.model.UserLocation;
+
+@Repository
+public interface UserLocationRepository extends JpaRepository<UserLocation, Long> {
+
+  @Query(value = "CREATE TABLE IF NOT EXISTS user_location (name VARCHAR(255), latitude DOUBLE, longitude DOUBLE, excluded BOOLEAN)", nativeQuery = true)
+  void createTableIfNotExists();
+
+  @Query("SELECT u FROM UserLocation u WHERE u.excluded = false ORDER BY power(u.latitude, 2) + power(u.longitude, 2) ASC")  
+  List<UserLocation> findNearest(int count);
+
+}
