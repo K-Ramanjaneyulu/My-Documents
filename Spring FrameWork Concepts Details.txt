@@ -1,0 +1,209 @@
+
+Spring CoreCovering concept of dependency injection:
+
+Spring CORE and AutoWire
+
+ About loose coupling and tight coupling
+
+https://www.java4s.com/spring/spring-aop-%e2%80%93-types-of-advice-with-complete-explanation/
+
+ What is dependency Injection · Program for setter injection with objects 
+
+https://www.java4s.com/spring/dependency-injection-with-spring-framework/
+
+ Dependency Injection with List
+
+https://www.java4s.com/jquery-tutorials/example-get-autocomplete-feature-in-javajsp-with-jquery-api/
+
+ Dependency Injection with List
+ 
+https://www.java4s.com/spring/spring-dependency-injection-with-list-collection-property/
+
+ Constructor injection
+
+https://www.java4s.com/spring/constructor-injection-in-spring/
+
+
+
+Spring AutoWire
+
+https://www.tutorialspoint.com/spring/spring_beans_autowiring.htm
+
+
+https://www.tutorialspoint.com/articles/index.php
+
+
+Spring DAO
+
+https://www.tutorialspoint.com/spring/spring_jdbc_framework.htm
+
+
+
+Spring ORM
+Spring ORM concepts by javatpoint
+
+• Spring and Hibernate Integration
+
+https://www.javatpoint.com/hibernate-and-spring-integration
+
+• Spring and JPA integration
+
+https://www.javatpoint.com/spring-and-jpa-integration
+
+
+Spring MVC
+
+• Spring MVC excecution flow
+
+https://www.java4s.com/spring-mvc/spring-mvc-execution-flow-diagram-spring-mvc-3-2-flow/
+
+• Spring MVC example
+
+https://www.java4s.com/spring-mvc/spring-mvc-execution-flow-diagram-spring-mvc-3-2-flow/
+
+
+
+Spring AOP
+
+Detailed Course by java4s about Spring AOP:
+
+• About Sring AOP basics.
+
+https://www.java4s.com/spring/spring-aopaspect-oriented-programming-tutorials/
+
+• Sring AOP terminology 
+
+https://www.java4s.com/spring/spring-aop-terminology-terms-we-should-know-before-entering-the-aop/
+
+• Aspect Introduction and example
+
+https://www.java4s.com/spring/spring-aspect-oriented-programming-aspect-introduction-example/
+
+• Type of advice
+
+https://www.java4s.com/core-java/send-java-email-in-specific-time-interval-automatically-dynamically/
+
+• Example of before advice and after advice
+
+https://www.java4s.com/spring/example-on-spring-aop-before-advice-after-advice/
+
+• Example of throws advice
+
+https://www.java4s.com/spring/spring-aop-throws-advice-example-with-complete-explanation/
+
+• Example of around advice
+
+https://www.java4s.com/spring/spring-aop-around-advice-example-with-complete-explanation/
+
+• About Joinpoint
+
+https://www.java4s.com/spring/spring-aop-joinpoint-what-is-joinpoint-in-spring-framework/
+
+• Pointcut Example
+
+https://www.java4s.com/spring/spring-aop-pointcut-example/
+
+
+Spring Boot For Microservices (COG JAVA)
+
+https://youtu.be/msXL2oDexqw
+
+
+
+Curriculum - Spring Cloud, Boot, Micro Services (COG JAVA)
+
+
+Spring Boot (COG JAVA)
+
+https://www.tutorialspoint.com/spring_boot/index.htm
+
+
+Restful Service through Spring boot (COG JAVA)
+
+https://www.tutorialspoint.com/spring_boot/spring_boot_building_restful_web_services.htm
+
+
+Microservices (COG JAVA)
+
+https://medium.com/hashmapinc/the-what-why-and-how-of-a-microservices-architecture-4179579423a9
+
+
+
+Spring Cloud (COG JAVA)
+
+• Introduction Bootstrapping
+
+https://www.baeldung.com/spring-cloud-bootstrapping
+
+• Cloud Config
+
+https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud/
+
+
+Eureka
+
+• Introduction to Eureka
+
+https://github.com/Netflix/eureka/wiki/Eureka-at-a-glance
+
+https://www.tutorialspoint.com/spring_boot/spring_boot_eureka_server.htm
+
+• Implementation of Eureka
+
+
+https://www.tutorialspoint.com/spring_boot/spring_boot_service_registration_with_eureka.htm
+
+https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud/
+
+
+Zuul
+• Introduction to Zuul
+
+https://www.javatpoint.com/zuul-api-gateway
+
+https://www.tutorialspoint.com/spring_boot/spring_boot_zuul_proxy_server_and_routing.htm
+
+• Implementing Zuu
+
+https://www.udemy.com/course/spring-boot-microservices-and-spring-cloud/
+
+
+
+Microservices Architecture (COG JAVA)
+
+https://martinfowler.com/articles/microservices.html
+
+
+Cloud (COG JAVA)
+
+https://www.javatpoint.com/cloud-computing-architecture
+
+
+MicroService Concepts
+
+https://www.udemy.com/course/understanding-microservices-architecture/
+
+https://www.udemy.com/course/microservices-with-spring-boot-and-spring-cloud/?src=sac&kw=Microservices+with+Spring+Boot+Spring+Cloud
+
+
+Spring Security
+
+https://app.pluralsight.com/id/?redirectTo=/ilx/redirect?clipId=ba4b409d-b841-4ea0-92e0-dc7cde816ffc
+
+
+
+Design Patterns
+
+https://www.udemy.com/course/java-design-patterns-tutorial/
+
+https://java-design-patterns.com/
+
+Kubernetes or Dockers
+
+https://www.udemy.com/course/kubernetes-docker/
+
+https://www.udemy.com/course/docker-essentials/
+
+https://www.udemy.com/course/devops-docker-ui-with-dockstation-portainer-lazy-docker/
+
+https://www.udemy.com/course/build-dk8s/
